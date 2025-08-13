@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Jane Doe — CV / Portfolio</title>
+  <meta name="description" content="The CV and portfolio of Jane Doe — Product-focused Software Engineer." />
+  <meta property="og:title" content="Jane Doe — CV / Portfolio" />
+  <meta property="og:description" content="Product-focused Software Engineer. Portfolio, experience, projects, and contact." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="" />
+  <meta name="theme-color" content="#0ea5e9" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: 248 249 251;
+      --fg: 17 24 39;
+      --muted: 100 116 139;
+      --brand: 14 165 233; /* sky-500 */
+      --card: 255 255 255;
+      --ring: 14 165 233;
+      --shadow: 17 24 39;
+    }
+    [data-theme="dark"] {
+      --bg: 3 7 18;
+      --fg: 226 232 240;
+      --muted: 148 163 184;
+      --brand: 56 189 248; /* sky-400 */
+      --card: 17 24 39;
+      --ring: 56 189 248;
+      --shadow: 2 6 23;
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      color: rgb(var(--fg));
+      background: linear-gradient(180deg, rgba(var(--bg)/1) 0%, rgba(var(--bg)/0.9) 30%, rgba(var(--bg)/1) 100%);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    a { color: rgb(var(--brand)); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .container { max-width: 1120px; margin: 0 auto; padding: 24px; }
+
+    /* Header */
+    header {
+      position: sticky; top: 0; z-index: 50; backdrop-filter: blur(10px);
+      background: linear-gradient(to right, rgba(var(--bg)/0.8), rgba(var(--bg)/0.6));
+      border-bottom: 1px solid rgba(var(--fg)/0.08);
+    }
+    .nav {
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      padding: 12px 24px; max-width: 1120px; margin: 0 auto;
+    }
+    .brand { display: flex; align-items: center; gap: 12px; font-weight: 800; letter-spacing: -0.02em; }
+    .brand .logo { width: 36px; height: 36px; border-radius: 12px; display: grid; place-items: center; font-weight: 800; background: linear-gradient(135deg, rgba(var(--brand)/1), rgba(99 102 241/1)); color: white; box-shadow: 0 10px 30px rgba(var(--brand)/0.35); }
+    .nav a { font-weight: 600; opacity: 0.9; }
+    .nav .links { display: flex; gap: 20px; align-items: center; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px; padding: 10px 14px; border-radius: 12px; font-weight: 700; border: 1px solid rgba(var(--fg)/0.12);
+      background: rgba(var(--card)/1); color: rgb(var(--fg)); text-decoration: none; box-shadow: 0 6px 20px rgba(var(--shadow)/0.12);
+    }
+    .btn:hover { transform: translateY(-1px); box-shadow: 0 12px 30px rgba(var(--shadow)/0.18); text-decoration: none; }
+    .btn.primary { background: linear-gradient(135deg, rgba(var(--brand)/1), rgba(99 102 241/1)); color: white; border: none; }
+
+    /* Hero */
+    .hero { padding: 64px 24px 24px; }
+    .hero-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 32px; align-items: center; }
+    .card { background: rgba(var(--card)/1); border: 1px solid rgba(var(--fg)/0.06); border-radius: 20px; padding: 24px; box-shadow: 0 20px 45px rgba(var(--shadow)/0.10); }
+    .hero h1 { font-size: clamp(32px, 4vw, 56px); line-height: 1.05; margin: 0 0 12px; letter-spacing: -0.02em; }
+    .hero p.lead { font-size: clamp(16px, 1.4vw, 20px); color: rgb(var(--muted)); margin: 0 0 20px; }
+    .chip { display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 999px; background: rgba(var(--brand)/0.12); color: rgb(var(--brand)); font-weight: 700; border: 1px solid rgba(var(--brand)/0.35); }
+    .avatar-wrap { position: relative; }
+    .avatar { width: 224px; height: 224px; border-radius: 28px; object-fit: cover; display: block; border: 6px solid rgba(var(--bg)/0.6); box-shadow: 0 20px 60px rgba(var(--brand)/0.25); }
+    .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 16px; }
+    .stat { background: linear-gradient(180deg, rgba(var(--bg)/0.6), rgba(var(--bg)/0.2)); border: 1px solid rgba(var(--fg)/0.06); padding: 14px; border-radius: 14px; text-align: center; }
+    .stat b { font-size: 22px; display: block; }
+
+    /* Sections */
+    section { padding: 48px 0; }
+    .section-title { font-size: 28px; margin: 0 0 18px; letter-spacing: -0.01em; }
+    .grid { display: grid; gap: 16px; }
+    .grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+    .grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
+    .grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
+
+    /* Experience timeline */
+    .timeline { position: relative; margin-left: 10px; }
+    .timeline::before { content: ""; position: absolute; left: 12px; top: 0; bottom: 0; width: 2px; background: linear-gradient(180deg, rgba(var(--brand)/0.5), rgba(var(--fg)/0.08)); }
+    .t-item { position: relative; padding-left: 40px; padding-bottom: 18px; }
+    .t-item:last-child { padding-bottom: 0; }
+    .t-dot { position: absolute; left: 5px; top: 6px; width: 16px; height: 16px; border-radius: 999px; background: white; border: 3px solid rgba(var(--brand)/1); box-shadow: 0 4px 14px rgba(var(--brand)/0.4);
+    }
+    .t-role { margin: 0; font-weight: 800; }
+    .t-meta { margin: 2px 0 8px; color: rgb(var(--muted)); font-size: 14px; }
+
+    /* Skills */
+    .skill { background: rgba(var(--card)/1); border: 1px solid rgba(var(--fg)/0.06); border-radius: 14px; padding: 16px; }
+    .bar { height: 10px; background: rgba(var(--fg)/0.08); border-radius: 999px; overflow: hidden; }
+    .bar span { display: block; height: 100%; background: linear-gradient(90deg, rgba(var(--brand)/1), rgba(99 102 241/1)); border-radius: 999px; }
+
+    /* Projects */
+    .project { display: grid; grid-template-columns: 120px 1fr; gap: 16px; background: rgba(var(--card)/1); border: 1px solid rgba(var(--fg)/0.06); border-radius: 16px; padding: 14px; align-items: center; }
+    .project img { width: 120px; height: 90px; object-fit: cover; border-radius: 12px; border: 1px solid rgba(var(--fg)/0.06); }
+    .tag { display: inline-block; font-size: 12px; padding: 6px 10px; border-radius: 999px; background: rgba(var(--fg)/0.06); margin: 4px 6px 0 0; }
+
+    /* Footer */
+    footer { padding: 32px 0 64px; color: rgb(var(--muted)); }
+
+    /* Utilities */
+    .flex { display: flex; gap: 12px; align-items: center; }
+    .right { margin-left: auto; }
+    .muted { color: rgb(var(--muted)); }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0; }
+    .spacer { height: 20px; }
+
+    /* Responsive */
+    @media (max-width: 920px) { .hero-grid { grid-template-columns: 1fr; } .project { grid-template-columns: 1fr; } .grid.cols-3 { grid-template-columns: 1fr; } .grid.cols-4 { grid-template-columns: 1fr 1fr; } }
+    @media print {
+      header, .actions, .theme-toggle, .nav { display: none !important; }
+      body { background: #fff; }
+      .card, .skill, .project { box-shadow: none; }
+      a { color: #000; text-decoration: none; }
+    }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Jane Doe",
+    "jobTitle": "Software Engineer",
+    "url": "https://example.com",
+    "email": "mailto:jane@example.com",
+    "sameAs": ["https://github.com/janedoe", "https://www.linkedin.com/in/janedoe"],
+    "worksFor": {"@type": "Organization", "name": "Acme Inc."}
+  }
+  </script>
+</head>
+<body>
+  <a href="#content" class="sr-only">Skip to content</a>
+  <header>
+    <nav class="nav" aria-label="Main">
+      <div class="brand">
+        <div class="logo" aria-hidden="true">JD</div>
+        <span>Jane Doe</span>
+      </div>
+      <div class="links">
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#education">Education</a>
+        <a href="#contact">Contact</a>
+        <button class="btn" id="themeToggle" aria-label="Toggle theme">🌗</button>
+        <a class="btn primary" href="resume.pdf" download>Download CV</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="content" class="container">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-grid">
+        <div class="card">
+          <span class="chip">Open to opportunities</span>
+          <h1>Hi, I'm Jane Doe — I build delightful, accessible web apps.</h1>
+          <p class="lead">Product-driven software engineer with 6+ years of experience turning fuzzy ideas into polished, scalable experiences. Previously at <strong>Acme Inc.</strong> and <strong>Beta Labs</strong>.</p>
+          <div class="flex actions">
+            <a class="btn primary" href="#projects">View Projects</a>
+            <a class="btn" href="#contact">Get in Touch</a>
+            <button class="btn" onclick="window.print()">Print</button>
+          </div>
+          <div class="stats" aria-label="Highlights">
+            <div class="stat"><b>6+</b><span class="muted">Years exp.</span></div>
+            <div class="stat"><b>18</b><span class="muted">Projects shipped</span></div>
+            <div class="stat"><b>4</b><span class="muted">Patents</span></div>
+          </div>
+        </div>
+        <div class="avatar-wrap">
+          <img class="avatar" src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?q=80&w=800&auto=format&fit=crop" alt="Portrait of Jane Doe" />
+          <div class="spacer"></div>
+          <div class="card">
+            <div class="flex" style="justify-content: space-between;">
+              <div>
+                <div class="muted">Currently</div>
+                <div><strong>Senior Engineer</strong> @ <a href="#">Acme Inc.</a></div>
+              </div>
+              <div>
+                <div class="muted">Location</div>
+                <div>Remote • GMT+2</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <h2 class="section-title">About</h2>
+      <div class="card">
+        <p>
+          I design and build high-impact product features end-to-end — from discovery and prototyping to accessible, production-ready code. I value thoughtful defaults, performance, and pragmatic DX.
+        </p>
+        <p>
+          Strengths: system design, front-end architecture, design systems, and cross-functional collaboration.
+        </p>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience">
+      <h2 class="section-title">Experience</h2>
+      <div class="card timeline">
+        <article class="t-item">
+          <div class="t-dot" aria-hidden="true"></div>
+          <h3 class="t-role">Senior Software Engineer • Acme Inc.</h3>
+          <div class="t-meta">Jan 2023 — Present · Remote</div>
+          <ul>
+            <li>Led migration to a modular design system, cutting UI defects by 42% and dev time by 25%.</li>
+            <li>Designed and shipped an offline-first client with 1M+ weekly active users.</li>
+            <li>Mentored 5 engineers; introduced RFCs and PR health checks.</li>
+          </ul>
+        </article>
+        <article class="t-item">
+          <div class="t-dot" aria-hidden="true"></div>
+          <h3 class="t-role">Software Engineer • Beta Labs</h3>
+          <div class="t-meta">Aug 2019 — Dec 2022 · New York, NY</div>
+          <ul>
+            <li>Built real-time analytics dashboards (P95 < 180ms, 1.2B events/day).</li>
+            <li>Introduced contract tests; reduced incidents by 60%.</li>
+            <li>Co-authored 3 patents in privacy-preserving ML.</li>
+          </ul>
+        </article>
+        <article class="t-item">
+          <div class="t-dot" aria-hidden="true"></div>
+          <h3 class="t-role">Frontend Engineer • Gamma Studio</h3>
+          <div class="t-meta">Jun 2017 — Jul 2019 · Boston, MA</div>
+          <ul>
+            <li>Built component library used across 7 teams; 300+ components.</li>
+            <li>Improved Core Web Vitals (LCP 1.8s → 1.1s).</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+      <div class="flex" style="justify-content: space-between; align-items: baseline;">
+        <h2 class="section-title">Projects</h2>
+        <div class="flex">
+          <input id="projectSearch" aria-label="Search projects" placeholder="Search projects…" style="padding:10px 12px;border-radius:12px;border:1px solid rgba(0,0,0,.12);background:rgba(var(--card)/1);">
+          <button class="btn" onclick="filterProjects()">Search</button>
+        </div>
+      </div>
+      <div class="grid cols-2" id="projectList">
+        <article class="project" data-tags="react typescript api">
+          <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=800&auto=format&fit=crop" alt="Project screenshot" />
+          <div>
+            <h3 style="margin:0">Nimbus UI Kit</h3>
+            <p class="muted">Composable React component library powering 10+ internal tools.</p>
+            <div>
+              <span class="tag">React</span><span class="tag">TypeScript</span><span class="tag">Storybook</span>
+            </div>
+            <div class="flex" style="margin-top:8px;">
+              <a class="btn" href="#">Demo</a>
+              <a class="btn" href="#">Code</a>
+            </div>
+          </div>
+        </article>
+        <article class="project" data-tags="python ml privacy">
+          <img src="https://images.unsplash.com/photo-1518779578993-ec3579fee39f?q=80&w=800&auto=format&fit=crop" alt="Project screenshot" />
+          <div>
+            <h3 style="margin:0">WhisperGuard</h3>
+            <p class="muted">On-device differential privacy library for voice assistants.</p>
+            <div>
+              <span class="tag">Python</span><span class="tag">ONNX</span><span class="tag">Edge</span>
+            </div>
+            <div class="flex" style="margin-top:8px;">
+              <a class="btn" href="#">Paper</a>
+              <a class="btn" href="#">Code</a>
+            </div>
+          </div>
+        </article>
+        <article class="project" data-tags="nodejs graphql realtime">
+          <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=800&auto=format&fit=crop" alt="Project screenshot" />
+          <div>
+            <h3 style="margin:0">Pulseboard</h3>
+            <p class="muted">Analytics dashboard with live collaboration (WebRTC).</p>
+            <div>
+              <span class="tag">Node</span><span class="tag">GraphQL</span><span class="tag">WebRTC</span>
+            </div>
+            <div class="flex" style="margin-top:8px;">
+              <a class="btn" href="#">Demo</a>
+              <a class="btn" href="#">Code</a>
+            </div>
+          </div>
+        </article>
+        <article class="project" data-tags="design system css accessibility">
+          <img src="https://images.unsplash.com/photo-1587620962725-abab7fe55159?q=80&w=800&auto=format&fit=crop" alt="Project screenshot" />
+          <div>
+            <h3 style="margin:0">Harmony DS</h3>
+            <p class="muted">Accessible design system with tokens and theming.</p>
+            <div>
+              <span class="tag">Design Tokens</span><span class="tag">A11y</span><span class="tag">Theming</span>
+            </div>
+            <div class="flex" style="margin-top:8px;">
+              <a class="btn" href="#">Docs</a>
+              <a class="btn" href="#">Figma</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+      <h2 class="section-title">Skills</h2>
+      <div class="grid cols-3">
+        <div class="skill">
+          <div class="flex" style="justify-content: space-between;">
+            <strong>JavaScript/TypeScript</strong><span class="muted">Expert</span>
+          </div>
+          <div class="bar" aria-label="Skill level"><span style="width: 92%"></span></div>
+        </div>
+        <div class="skill">
+          <div class="flex" style="justify-content: space-between;">
+            <strong>React / Next.js</strong><span class="muted">Expert</span>
+          </div>
+          <div class="bar"><span style="width: 90%"></span></div>
+        </div>
+        <div class="skill">
+          <div class="flex" style="justify-content: space-between;">
+            <strong>Node.js</strong><span class="muted">Advanced</span>
+          </div>
+          <div class="bar"><span style="width: 84%"></span></div>
+        </div>
+        <div class="skill">
+          <div class="flex" style="justify-content: space-between;">
+            <strong>CSS / Design Systems</strong><span class="muted">Advanced</span>
+          </div>
+          <div class="bar"><span style="width: 85%"></span></div>
+        </div>
+        <div class="skill">
+          <div class="flex" style="justify-content: space-between;">
+            <strong>Python</strong><span class="muted">Advanced</span>
+          </div>
+          <div class="bar"><span style="width: 78%"></span></div>
+        </div>
+        <div class="skill">
+          <div class="flex" style="justify-content: space-between;">
+            <strong>System Design</strong><span class="muted">Advanced</span>
+          </div>
+          <div class="bar"><span style="width: 80%"></span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EDUCATION & CERTS -->
+    <section id="education">
+      <h2 class="section-title">Education & Certifications</h2>
+      <div class="grid cols-2">
+        <div class="card">
+          <h3 style="margin:0">B.S. in Computer Science</h3>
+          <div class="muted">University of Somewhere • 2013 — 2017</div>
+          <ul>
+            <li>Graduated magna cum laude</li>
+            <li>President, Women in Computing</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3 style="margin:0">Certifications</h3>
+          <ul>
+            <li>AWS Certified Solutions Architect — Associate</li>
+            <li>Google Professional Cloud Developer</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section id="testimonials">
+      <h2 class="section-title">Testimonials</h2>
+      <div class="grid cols-3">
+        <figure class="card">
+          <blockquote>“Jane is a rare blend of product sensibility and engineering rigor. She elevates every team she joins.”</blockquote>
+          <figcaption class="muted">— Alex Kim, Director of Product, Acme Inc.</figcaption>
+        </figure>
+        <figure class="card">
+          <blockquote>“Her code quality and empathy for users set a new bar for our org.”</blockquote>
+          <figcaption class="muted">— Priya N., Staff Engineer, Beta Labs</figcaption>
+        </figure>
+        <figure class="card">
+          <blockquote>“If you need someone to ship complex features fast without breaking things, hire Jane.”</blockquote>
+          <figcaption class="muted">— Marco L., VP Engineering, Gamma Studio</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <h2 class="section-title">Contact</h2>
+      <div class="grid cols-2">
+        <div class="card">
+          <form class="grid" onsubmit="event.preventDefault(); alert('Thanks! This demo form does not submit. Replace with your form handler.');">
+            <label>
+              <span class="muted">Your name</span>
+              <input required name="name" placeholder="Jane Recruiter" style="width:100%;padding:12px;border-radius:12px;border:1px solid rgba(0,0,0,.12);background:rgba(var(--card)/1);">
+            </label>
+            <label>
+              <span class="muted">Email</span>
+              <input required type="email" name="email" placeholder="jane@company.com" style="width:100%;padding:12px;border-radius:12px;border:1px solid rgba(0,0,0,.12);background:rgba(var(--card)/1);">
+            </label>
+            <label>
+              <span class="muted">Message</span>
+              <textarea required name="message" rows="5" placeholder="Let's talk about…" style="width:100%;padding:12px;border-radius:12px;border:1px solid rgba(0,0,0,.12);background:rgba(var(--card)/1);"></textarea>
+            </label>
+            <button class="btn primary" type="submit">Send</button>
+          </form>
+        </div>
+        <div class="card">
+          <div class="flex" style="justify-content: space-between; align-items: start;">
+            <div>
+              <div class="muted">Email</div>
+              <div><a id="emailLink" href="mailto:jane@example.com">jane@example.com</a></div>
+            </div>
+            <button class="btn" onclick="copyEmail()">Copy</button>
+          </div>
+          <div class="spacer"></div>
+          <div class="grid">
+            <a class="btn" href="https://github.com/janedoe">GitHub</a>
+            <a class="btn" href="https://www.linkedin.com/in/janedoe">LinkedIn</a>
+            <a class="btn" href="https://twitter.com/janedoe">Twitter</a>
+            <a class="btn" href="https://example.com">Website</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="container">
+    <div class="flex" style="justify-content: space-between;">
+      <div>© <span id="year"></span> Jane Doe. All rights reserved.</div>
+      <div class="muted">Built with accessible, semantic HTML.</div>
+    </div>
+  </footer>
+
+  <script>
+    // Initialize theme from localStorage or system preference
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const savedTheme = localStorage.getItem('theme');
+    const theme = savedTheme || (prefersDark ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-theme', theme);
+
+    const btn = document.getElementById('themeToggle');
+    btn?.addEventListener('click', () => {
+      const current = document.documentElement.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+    });
+
+    // Footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Project search/filter
+    function filterProjects() {
+      const q = (document.getElementById('projectSearch').value || '').toLowerCase();
+      const items = Array.from(document.querySelectorAll('#projectList .project'));
+      items.forEach(card => {
+        const hay = (card.textContent + ' ' + (card.getAttribute('data-tags') || '')).toLowerCase();
+        card.style.display = hay.includes(q) ? 'grid' : 'none';
+      });
+    }
+    document.getElementById('projectSearch').addEventListener('input', filterProjects);
+
+    // Copy email
+    function copyEmail() {
+      const email = document.getElementById('emailLink').textContent.trim();
+      navigator.clipboard.writeText(email).then(() => {
+        const prev = document.activeElement?.textContent;
+        alert('Email copied: ' + email);
+      });
+    }
+  </script>
+</body>
+</html>
